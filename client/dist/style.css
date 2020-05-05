@@ -1,0 +1,207 @@
+@font-face{
+  font-family: 'metropolis-regular';
+  src: url('./Metropolis/Metropolis-Regular.otf');
+  font-family: 'metropolis-light';
+  src: url('./Metropolis/Metropolis-Light.otf');
+}
+
+body{
+  font-family: 'metropolis-light';
+}
+
+h1 {
+  font-family: 'metropolis-regular';
+}
+h3 {
+  font-family: 'metropolis-light';
+}
+#product-nav{
+  font-size: 12px;
+  padding: 0;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+#product-container{
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+#product-display{
+  display: flex;
+  width: 25%;
+
+}
+
+#face-size{
+  margin-top: 30px;
+  font-size: 14px;
+  margin-left: .5em;
+}
+
+#product-name{
+  font-size: 16px;
+  text-align: center;
+}
+
+#product-color{
+  color: gray;
+  font-size: 14px;
+  margin-left: .5em;
+}
+
+#product-rating{
+  font-size: 14px;
+  margin-left: .5em;
+}
+
+#product-desc{
+  font-size: 1em;
+  line-height: 1.5em;
+  text-align: justify;
+  margin: .5em;
+}
+
+#btn360{
+ margin: auto;
+ text-align: center;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.product-gallery-image{
+  list-style: none;
+  display: inline;
+  margin: 10px;
+}
+
+.product-gallery-image:hover{
+  cursor: pointer;
+}
+
+.disp-thumb{
+  width: 80px;
+  height: 80px;
+
+}
+
+#image-col2{
+  display: flex;
+  width: 50%;
+  display: inline;
+}
+
+#main{
+  align-items: center;
+  text-align: center;
+  max-width: 80%;
+  max-height: 80%;
+  margin: 10%;
+}
+
+#main:hover{
+  cursor: zoom-in;
+}
+
+
+#select-col3{
+  display: flex;
+  width: 25%;
+  display: inline;
+}
+
+#specs{
+  display: inline;
+}
+#color{
+  margin-left: 10px;
+  margin-top: 50%;
+  text-align: left;
+  font-size: .85em;
+
+}
+
+#serial{
+  display: inline;
+  color: gray;
+  text-align: right;
+  margin-left: 50%;
+
+}
+
+.color-gallery-image{
+  display: inline;
+  list-style: none;
+  padding: 1px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.color-gallery-image:hover{
+  cursor: pointer;
+}
+.color-thumb{
+  height: 30px;
+  width: 30px;
+}
+
+#price-info{
+  margin-top: 4em;
+  margin-left: 10px;
+}
+#afterpay{
+  text-align: center;
+  font-size: .85em;
+}
+
+#add-to-cart{
+  border: 1px solid black;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 10px 42px 11px;
+  color: white;
+  background-color: black;
+  font-family: 'metropolis-light';
+  margin-left: 30px;
+  height: 40px;
+  width:60%;
+}
+
+#wl{
+  order: 3px solid black;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  font-family: 'metropolis-light';
+  margin-left: 5px;
+  height: 40px;
+}
+
+.icon{
+  float: left;
+  margin: 30px 10px 0px 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+#promo-text{
+  display: inline-block;
+  font-size: 12px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+
+#callout {
+  margin-top: 80px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}

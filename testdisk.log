@@ -1,0 +1,150 @@
+
+
+Tue Apr 28 16:06:27 2020
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Darwin, kernel 18.0.0 (Darwin Kernel Version 18.0.0: Wed Aug 22 20:13:40 PDT 2018; root:xnu-4903.201.2~1/RELEASE_X86_64) x86_64
+Compiler: GCC 4.2
+ext2fs lib: none, ntfs lib: none, reiserfs lib: none, ewf lib: none, curses lib: ncurses 5.7
+User is not root!
+Hard disk list
+Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO), sector size=512
+Disk /dev/rdisk2 - 204 MB / 195 MiB - 400000 sectors (RO), sector size=512
+
+Partition table type (auto): EFI GPT
+Media is opened in read-only.
+Disk /dev/disk2 - 204 MB / 195 MiB (RO)
+Partition table type: Mac
+
+Interface Advanced
+Partition table type (auto): EFI GPT
+Media is opened in read-only.
+Disk /dev/rdisk2 - 204 MB / 195 MiB (RO)
+Partition table type: Intel
+Partition table type (auto): EFI GPT
+Media is opened in read-only.
+Disk /dev/disk2 - 204 MB / 195 MiB (RO)
+Partition table type: EFI GPT
+
+Analyse Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+hdr_size=92
+hdr_lba_self=1
+hdr_lba_alt=399999 (expected 399999)
+hdr_lba_start=34
+hdr_lba_end=399966
+hdr_lba_table=2
+hdr_entries=128
+hdr_entsz=128
+Current partition structure:
+ 1 P Mac HFS                       40     399959     399920 [disk image]
+
+search_part()
+Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+
+HFS+ magic value at 40/0/1
+
+HFS+ magic value at 40/0/1
+part_size 399920
+     Mac HFS                       40     399959     399920
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+
+Results
+   P Mac HFS                       40     399959     399920
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+
+interface_write()
+ 1 P Mac HFS                       40     399959     399920
+
+search_part()
+Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+
+HFS+ magic value at 40/0/1
+
+HFS+ magic value at 40/0/1
+part_size 399920
+     Mac HFS                       40     399959     399920
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+
+HFS+ magic value at 42/0/1
+
+HFS+ magic value at 399956/0/1
+part_size 399920
+     Mac HFS                   399956     799875     399920
+     HFS+ blocksize=4096, 204 MB / 195 MiB
+This partition ends after the disk limits. (start=399956, size=399920, end=799875, disk end=400000)
+
+HFS+ magic value at 399958/0/1
+part_size 399920
+     Mac HFS                       40     399959     399920
+     HFS+ found using backup sector!, 204 MB / 195 MiB
+Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+Check the harddisk size: HD jumper settings, BIOS detection...
+The harddisk (204 MB / 195 MiB) seems too small! (< 409 MB / 390 MiB)
+The following partition can't be recovered:
+     Mac HFS                   399956     799875     399920
+     HFS+ blocksize=4096, 204 MB / 195 MiB
+
+Results
+   P Mac HFS                       40     399959     399920
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+
+interface_write()
+ 1 P Mac HFS                       40     399959     399920
+
+interface_write()
+ 1 P Mac HFS                       40     399959     399920
+
+interface_write()
+ 1 P Mac HFS                       40     399959     399920
+simulate write!
+
+Interface Advanced
+hdr_size=92
+hdr_lba_self=1
+hdr_lba_alt=399999 (expected 399999)
+hdr_lba_start=34
+hdr_lba_end=399966
+hdr_lba_table=2
+hdr_entries=128
+hdr_entsz=128
+ 1 P Mac HFS                       40     399959     399920 [disk image]
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+Partition table type (auto): EFI GPT
+Media is opened in read-only.
+Disk /dev/disk2 - 204 MB / 195 MiB (RO)
+Partition table type: Intel
+
+Analyse Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+Geometry from i386 MBR: head=255 sector=63
+BAD_RS LBA=1 1339
+check_part_i386 1 type EE: no test
+get_geometry_from_list_part_aux head=1 nbr=2
+get_geometry_from_list_part_aux head=8 nbr=2
+get_geometry_from_list_part_aux head=16 nbr=2
+get_geometry_from_list_part_aux head=32 nbr=2
+get_geometry_from_list_part_aux head=64 nbr=2
+get_geometry_from_list_part_aux head=128 nbr=2
+get_geometry_from_list_part_aux head=240 nbr=1
+get_geometry_from_list_part_aux head=255 nbr=1
+Current partition structure:
+ 1 P EFI GPT                        1     399999     399999
+
+Warning: Bad starting sector (CHS and LBA don't match)
+No partition is bootable
+
+search_part()
+Disk /dev/disk2 - 204 MB / 195 MiB - 400000 sectors (RO)
+
+HFS+ magic value at 40/0/1
+
+HFS+ magic value at 40/0/1
+part_size 399920
+     HFS                           40     399959     399920
+     HFS+ blocksize=4096 + Backup, 204 MB / 195 MiB
+get_geometry_from_list_part_aux head=1 nbr=2
+get_geometry_from_list_part_aux head=8 nbr=2
+Warning: the current number of heads per cylinder is 1 but the correct value may be 8.
+SIGHUP detected! TestDisk has been killed.
