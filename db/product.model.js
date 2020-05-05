@@ -14,7 +14,7 @@ var productSchema = new Schema({
   in_cart: {type: Boolean,},
   reviews_amount: {type: Number,},
   questions_amount: {type: Number,},
-  product_size: {type:Number,},
+  product_size: {type: Number,},
   product_serial: {type: String,},
   product_url: {type: String,},
   images: [{type: String,}],
