@@ -8,26 +8,31 @@ class Image extends React.Component {
     super(props);
 
     this.state={
-      mainImage: "https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dw1637bf42/products/A1210-2930-view1.jpg?sfrm=png",
+      mainImage: 'https://media.complex.com/campaigns/2014-q4/nixon-spectrum/mobile/nixon_cover.jpg',
+      key: 0,
+
     }
     this.setMainImage = this.setMainImage.bind(this);
 
   };
 
-ComponentDidMount(){
-  console.log("component mounted")
-  setMainImage();
+componentDidMount(){
+  this._isMounted = true;
+  this.setMainImage();
 }
 
 setMainImage() {
-  console.log("main image setting with", this.props);
-  let defaultImage = [];
-  for(let i =0; i<props.length; i++){
-    defaultImage.push(this.props.images[i]);
-  }
-   this.setState({
-     mainImage: defaultImage[0],
-   })
+  let starter;
+  axios.get('A105-2687-00')
+  .then((response) => {
+    starter= response.data.images[0];
+    this.setState({
+      mainImage: starter,
+    });
+  })
+  .catch(function(error){
+    console.log(error);
+  })
 }
 
 

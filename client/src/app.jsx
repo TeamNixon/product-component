@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+import ProductGallery from './component/productGallery.jsx';
 import Image from './component/image.jsx';
+import ColorSelect from './component/colorSelect.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -10,13 +13,15 @@ class App extends React.Component {
 
     this.state = {
       product: {},
+      currentKey: 0,
     }
     this.getProductBySerial = this.getProductBySerial.bind(this);
+    this.view360 = this.view360.bind(this);
   }
 
-
+//render product by serial at start of load
 ComponentDidMount(){
-  axios.get('/api/A1057-307-00')
+  axios.get('/api/A105-2687-00')
   .then((response) => {
     response.json();
     //console.log('json', response.json())
@@ -31,8 +36,13 @@ ComponentDidMount(){
   })
 }
 
+view360(){
+  alert('That request is coming!');
+}
+
+//axios request function
 getProductBySerial(serial){
-  axios.get('/api/A1057-307-00')
+  axios.get('/api/A105-2687-00')
   .then((response) => {
     let product = response.data;
     //console.log(product, "response data");
@@ -71,22 +81,18 @@ getProductBySerial(serial){
             <p>{this.state.product.product_description}</p>
           </div>
           <div id="btn360">
-            <button type="submit" > View in 360</button>
+            <button type="submit" onClick={this.view360}> View in 360</button>
           </div>
           <div id="product-gallery">
-            <ul>
-              <li className="product-gallery-image"><img className="disp-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb1"/></li>
-              <li className="product-gallery-image"><img className="disp-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb2"/></li>
-              <li className="product-gallery-image"><img className="disp-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb3"/></li>
-              <li className="product-gallery-image"><img className="disp-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb4"/></li>
-            </ul>
+            < ProductGallery currentKey={this.state.currentKey} images={this.state.product.images} />
+
           </div>
         </div>
 
 
       </div>
       <div id="image-col2">
-        <Image images={this.state.product.images} />
+        <Image currentKey={this.state.currentKey} images={this.state.product.images} />
       </div>
 
       <div id="select-col3">
@@ -100,13 +106,7 @@ getProductBySerial(serial){
           </div>
         </div>
         <div id="color-picker">
-          <ul>
-              <li className="color-gallery-image"><img className="color-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb1"/></li>
-              <li className="color-gallery-image"><img className="color-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb2"/></li>
-              <li className="color-gallery-image"><img className="color-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb3"/></li>
-              <li className="color-gallery-image"><img className="color-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb4"/></li>
-              <li className="color-gallery-image"><img className="color-thumb" src="https://www.nixon.com/dw/image/v2/AAYF_PRD/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwa6af7a8f/products/A105-001-view1.jpg?sfrm=png" id="thumb4"/></li>
-            </ul>
+          <ColorSelect currentKey={this.state.currentKey} images={this.state.product.images} />
         </div>
         <div id="price-info">
         <h3>${this.state.product.discounted_price}.00</h3>
