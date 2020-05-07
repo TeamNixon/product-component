@@ -3,14 +3,19 @@
   src: url('./Metropolis/Metropolis-Regular.otf');
   font-family: 'metropolis-light';
   src: url('./Metropolis/Metropolis-Light.otf');
+  font-family: 'metropolis-bold';
+  src: url('./Metropolis/Metropolis-Bold.otf');
 }
 
 body{
   font-family: 'metropolis-light';
 }
+p{
+  font-family: 'metropolis-light';
+}
 
-h1 {
-  font-family: 'metropolis-regular';
+h2 {
+  font-family: 'metropolis-bold';
 }
 h3 {
   font-family: 'metropolis-light';
@@ -62,11 +67,7 @@ h3 {
   line-height: 1.5em;
   text-align: justify;
   margin: .5em;
-}
-
-#btn360{
- margin: auto;
- text-align: center;
+  margin-bottom: 15px;
 }
 
 button:hover{
@@ -74,9 +75,9 @@ button:hover{
 }
 
 .product-gallery-image{
+  text-align: left;
   list-style: none;
   display: inline;
-  margin: 10px;
 }
 
 .product-gallery-image:hover{
@@ -91,9 +92,9 @@ button:hover{
 }
 
 #image-col2{
-  display: flex;
-  width: 50%;
+
   display: inline;
+  width: 50%;
 }
 
 #main{

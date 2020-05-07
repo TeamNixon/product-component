@@ -16,7 +16,7 @@ class App extends React.Component {
       currentKey: 0,
     }
     this.getProductBySerial = this.getProductBySerial.bind(this);
-    this.view360 = this.view360.bind(this);
+
   }
 
 //render product by serial at start of load
@@ -36,9 +36,6 @@ ComponentDidMount(){
   })
 }
 
-view360(){
-  alert('That request is coming!');
-}
 
 //axios request function
 getProductBySerial(serial){
@@ -69,7 +66,7 @@ getProductBySerial(serial){
             {this.state.product.product_size}
           </div>
           <div id="product-name">
-            <h1>{this.state.product.product_name}</h1>
+            <h2>{this.state.product.product_name}</h2>
           </div>
           <div id="product-color">
             {this.state.product.color}
@@ -80,9 +77,7 @@ getProductBySerial(serial){
           <div id="product-desc">
             <p>{this.state.product.product_description}</p>
           </div>
-          <div id="btn360">
-            <button type="submit" onClick={this.view360}> View in 360</button>
-          </div>
+
           <div id="product-gallery">
             < ProductGallery currentKey={this.state.currentKey} images={this.state.product.images} />
 

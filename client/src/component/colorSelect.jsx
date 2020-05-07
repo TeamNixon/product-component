@@ -9,7 +9,7 @@ class ColorSelect extends React.Component{
 
     this.state = {
       selectedImage: 0,
-      border: '1px solid lightblue',
+      border: '1px solid black',
     }
     this.determineStyle = this.determineStyle.bind(this);
   }
@@ -22,7 +22,7 @@ class ColorSelect extends React.Component{
     //onsole.log(starter, 'starter');
     this.setState({
       selectedImage: 0,
-      border: '1px solid lightblue',
+      border: '1px solid black',
     });
   })
   .catch(function(error){
@@ -32,7 +32,7 @@ class ColorSelect extends React.Component{
 
   determineStyle(index){
     let isItemSelected = this.state.selectedImage === index;
-    return isItemSelected ? '1px solid lightblue' : '';
+    return isItemSelected ? '1px solid black' : '1px solid lightgrey';
   }
 
 
