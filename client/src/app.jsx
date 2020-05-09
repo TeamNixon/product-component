@@ -14,39 +14,71 @@ class App extends React.Component {
     this.state = {
       product: {},
       currentKey: 0,
+      colors: null,
     }
     this.getProductBySerial = this.getProductBySerial.bind(this);
-
+    this.changeKey = this.changeKey.bind(this);
   }
 
 //render product by serial at start of load
-ComponentDidMount(){
-  axios.get('/api/A105-2687-00')
-  .then((response) => {
-    response.json();
-    //console.log('json', response.json())
-  })
-  .then(json => {
-    this.setState({
-      product: json
-    });
-  })
-  .catch(function(error){
-    console.log(error);
-  })
+//do  colors request in same initialization for the color gallery
+componentDidMount(){
+  this.getProductBySerial();
 }
 
 
 //axios request function
+//also is initialization
 getProductBySerial(serial){
-  axios.get('/api/A105-2687-00')
+  let productName;
+  //if serial is empty(at beginning) give it a default
+  if(!serial){
+    serial = '/api/A105-2687-00'
+  }
+
+  axios.get(serial)
   .then((response) => {
     let product = response.data;
+    productName = response.data.product_name;
     //console.log(product, "response data");
     this.setState({product: product,});
+    //replace spaces with dashes for formatting in db
+    productName = productName.replace(/\s+/g, '-');
+    //console.log('productname replace', productName);
+    axios
+        .get(`/api/product/${productName}`)
+        .then((response)=>{
+          let colors = response.data;
+          this.setState({
+            colors: colors,
+          })
+        })
   })
+  //initialize colors
   .catch(function(error){
-    console.log(error);
+    console.error(error);
+  });
+}
+
+getColors(product){
+  let productName;
+  productName = this.state.product.product_name;
+  productName = productName.replace(/\s+/g, '-');
+  //console.log('productname replace', productName);
+  axios
+    .get(`/api/product/${productName}`)
+    .then((response)=>{
+      let colors = response.data;
+      this.setState({
+        colors: colors,
+      })
+    })
+}
+
+//method to handle communication of key from product gallery to main image.
+changeKey(key){
+  this.setState({
+    currentKey: key,
   })
 }
 
@@ -54,16 +86,17 @@ getProductBySerial(serial){
     return (
 
 
-      <div id="product-container" onClick={this.getProductBySerial}>
+      <div id="product-container">
 
       <div id="product-display">
 
         <div id="desc-col1">
         <div id="product-nav">
-          Men's > Watches > {this.state.product.product_name}
-      </div>
+          <p><a href="https://www.nixon.com/us/en"> Home </a> >
+          <a href="https://www.nixon.com/us/en/mens-watches"> Men's Watches </a> > {this.state.product.product_name}</p>
+        </div>
           <div id="face-size">
-            {this.state.product.product_size}
+            {this.state.product.product_size}mm
           </div>
           <div id="product-name">
             <h2>{this.state.product.product_name}</h2>
@@ -72,14 +105,18 @@ getProductBySerial(serial){
             {this.state.product.color}
           </div>
           <div id="product-rating">
-            {this.state.product.product_rating} STARS HERE {this.state.product.reviews_amount} reviews
+            {this.state.product.product_rating}  | {this.state.product.reviews_amount} reviews
           </div>
           <div id="product-desc">
             <p>{this.state.product.product_description}</p>
           </div>
 
           <div id="product-gallery">
-            < ProductGallery currentKey={this.state.currentKey} images={this.state.product.images} />
+            < ProductGallery
+            currentKey={this.state.currentKey}
+            images={this.state.product.images}
+            action={this.changeKey.bind(this)}
+            serial={this.state.product.product_serial}/>
 
           </div>
         </div>
@@ -87,7 +124,7 @@ getProductBySerial(serial){
 
       </div>
       <div id="image-col2">
-        <Image currentKey={this.state.currentKey} images={this.state.product.images} />
+        <Image currentKey={this.state.currentKey} images={this.state.product.images} serial={this.state.product.product_serial}/>
       </div>
 
       <div id="select-col3">
@@ -101,7 +138,7 @@ getProductBySerial(serial){
           </div>
         </div>
         <div id="color-picker">
-          <ColorSelect currentKey={this.state.currentKey} images={this.state.product.images} />
+          <ColorSelect currentKey={this.state.currentKey} colors={this.state.colors} action={this.getProductBySerial.bind(this)} />
         </div>
         <div id="price-info">
         <h3>${this.state.product.discounted_price}.00</h3>

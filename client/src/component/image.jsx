@@ -9,7 +9,8 @@ class Image extends React.Component {
 
     this.state={
       mainImage: 'https://media.complex.com/campaigns/2014-q4/nixon-spectrum/mobile/nixon_cover.jpg',
-      key: 0,
+      key: this.props.currentKey,
+      serial: null,
 
     }
     this.setMainImage = this.setMainImage.bind(this);
@@ -17,15 +18,31 @@ class Image extends React.Component {
   };
 
 componentDidMount(){
-  this._isMounted = true;
   this.setMainImage();
 }
+//receives the new current key from props changed by product gallery component
+componentWillReceiveProps({currentKey}){
+  let newKey = currentKey;
+  let newImage;
+  let serial = this.props.serial
+  axios.get(serial)
+  .then((response) => {
+    newImage= response.data.images[newKey];
+    this.setState({
+      mainImage: newImage,
+    });
+  })
+  .catch(function(error){
+    console.log(error);
+  })
+}
 
+//sets the main image to be the 0th index at start
 setMainImage() {
-  let starter;
+  let image = this.props.currentKey;
   axios.get('A105-2687-00')
   .then((response) => {
-    starter= response.data.images[0];
+    let starter= response.data.images[0];
     this.setState({
       mainImage: starter,
     });

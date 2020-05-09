@@ -9,7 +9,7 @@ var productSchema = new Schema({
   discount: {type: Boolean},
   discounted_price: {type: Number,},
   color: {type: String,},
-  colors: [{type: String,}],
+  colors: {type: Object,},
   product_description: {type: String,},
   in_cart: {type: Boolean,},
   reviews_amount: {type: Number,},

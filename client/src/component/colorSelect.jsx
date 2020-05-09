@@ -8,7 +8,7 @@ class ColorSelect extends React.Component{
     super(props);
 
     this.state = {
-      selectedImage: 0,
+      selectedImage: 1,
       border: '1px solid black',
     }
     this.determineStyle = this.determineStyle.bind(this);
@@ -37,12 +37,15 @@ class ColorSelect extends React.Component{
 
 
 render(){
+  var getProductBySerial = this.props.action;
   return(
     <ul>
-      {this.props.images ? this.props.images.map((image, index) =>(
+      {this.props.colors ? this.props.colors.map((product, index) =>(
         <li className="color-gallery-image"><img className="color-thumb"
-        src={image} key={index}
-        onClick={()=> this.setState({selectedImage: index})}
+        src={product.images[0]} key={index}
+        onClick={()=> {this.setState({selectedImage: index});
+        getProductBySerial(product.product_serial)}
+        }
         style={{border: this.determineStyle(index)}}
         /></li>
       )) : 'Getting Data'}

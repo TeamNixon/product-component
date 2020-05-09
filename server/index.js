@@ -20,10 +20,23 @@ app.get('/api/:product_serial', function(req,res){
   let query = {product_serial : `${serial}`};
   Product.findOne(query, function(err, result){
     if(err){ console.error(err)};
-    console.log(serial, "product", result, "result")
+    //console.log(serial, "product", result, "result")
     res.status(200).send(result);
   });
 });
+
+app.get('/api/product/:product_name', function(req, res){
+  let name = req.params.product_name;
+  console.log(req.params);
+  //replace the hyphens from params with a space for query
+  name = name.replace(/-/g, " ");
+  let query = {product_name: `${name}`};
+  Product.find(query, function(err, result){
+    if(err){console.error(err)}
+    console.log(name, "name", result, "results");
+    res.status(200).send(result);
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`listening on Port ${PORT}`);
