@@ -1,5 +1,10 @@
 {
   "name": "product-component",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/spec/setupTests.js"
+    ]
+  },
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -21,16 +26,18 @@
   "homepage": "https://github.com/TeamNixon/product-component#readme",
   "devDependencies": {
     "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "jest": "^25.5.2",
     "jest-webpack": "^0.5.1",
     "url-loader": "^4.1.0",
@@ -39,6 +46,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-preset-jest": "^26.0.0",
     "body-parser": "^1.19.0",
     "css-loader": "^3.5.3",
     "express": "^4.17.1",
@@ -48,8 +56,10 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
     "path": "^0.12.7",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-inner-image-zoom": "^1.0.5"
+    "react-inner-image-zoom": "^1.0.5",
+    "react-test-renderer": "^16.13.1"
   }
 }

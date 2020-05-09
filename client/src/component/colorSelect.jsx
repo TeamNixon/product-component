@@ -1,61 +1,70 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import propTypes from 'prop-types';
 import axios from 'axios';
 
 
-class ColorSelect extends React.Component{
-  constructor(props){
+class ColorSelect extends React.Component {
+  constructor(props) {
     super(props);
 
     this.state = {
       selectedImage: 1,
-      border: '1px solid black',
-    }
+    };
     this.determineStyle = this.determineStyle.bind(this);
   }
 
-  getImages(){
-    let starter;
-  axios.get('A105-2687-00')
-  .then((response) => {
-    starter = response.data.images[0];
-    //onsole.log(starter, 'starter');
-    this.setState({
-      selectedImage: 0,
-      border: '1px solid black',
-    });
-  })
-  .catch(function(error){
-    console.log(error);
-  })
+  getImages() {
+    // let starter;
+    axios.get('A105-2687-00')
+      .then(() => {
+        // starter = response.data.images[0];
+        // onsole.log(starter, 'starter');
+        this.setState({
+          selectedImage: 0,
+        });
+      })
+      .catch((error) => {
+        throw Error(error);
+      });
   }
 
-  determineStyle(index){
-    let isItemSelected = this.state.selectedImage === index;
+  determineStyle(index) {
+    const { selectedImage } = this.state;
+    const isItemSelected = (selectedImage === index);
     return isItemSelected ? '1px solid black' : '1px solid lightgrey';
   }
 
 
-render(){
-  var getProductBySerial = this.props.action;
-  return(
-    <ul>
-      {this.props.colors ? this.props.colors.map((product, index) =>(
-        <li className="color-gallery-image"><img className="color-thumb"
-        src={product.images[0]} key={index}
-        onClick={()=> {this.setState({selectedImage: index});
-        getProductBySerial(product.product_serial)}
-        }
-        style={{border: this.determineStyle(index)}}
-        /></li>
-      )) : 'Getting Data'}
+  render() {
+    const { action } = this.props;
+    const { colors } = this.props;
+    return (
+      <ul>
+        {colors ? colors.map((product, index) => (
+          <li className="color-gallery-image">
+            {/* eslint-disable-next-line */}
+            <img
+              className="color-thumb"
+              src={product.images[0]}
+              index={index}
+              onClick={() => {
+                this.setState({ selectedImage: index });
+                action(product.product_serial);
+              }}
+              style={{ border: this.determineStyle(index) }}
+              alt={product.color}
+            />
+          </li>
+        )) : 'Getting Data'}
 
-    </ul>
-  )
-
+      </ul>
+    );
+  }
 }
 
-
-}
+ColorSelect.propTypes = {
+  action: propTypes.func.isRequired,
+  colors: propTypes.arrayOf(propTypes.oneOfType([propTypes.number, propTypes.string])),
+};
 
 export default ColorSelect;

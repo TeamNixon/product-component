@@ -1,72 +1,87 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import propTypes from 'prop-types';
 import axios from 'axios';
 
 class ProductGallery extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       selectedImage: null,
-      border: '',
-    }
+    };
     this.determineStyle = this.determineStyle.bind(this);
     this.getImages = this.getImages.bind(this);
   }
 
-componentDidMount(){
-  this.getImages();
-}
+  componentDidMount() {
+    this.getImages();
+  }
 
 
-//to make it restart at 0 index with new color click,
-//changekey needs to be called to update in the parent component.
+  // to make it restart at 0 index with new color click,
+  // changekey needs to be called to update in the parent component.
 
-// componentWillReceiveProps(){
-//   this.getImages();
-//  changeKey(0);
-// }
+  // componentWillReceiveProps(){
+  //   this.getImages();
+  //  changeKey(0);
+  // }
 
-getImages(){
-  let starter;
-  let serial = this.props.serial
-  axios.get(serial)
-  .then((response) => {
-    starter = response.data.images[0];
-    //onsole.log(starter, 'starter');
-    this.setState({
-      selectedImage: 0,
-      border: '1px solid black',
-    });
-  })
-  .catch(function(error){
-    console.log(error);
-  })
-}
+  getImages() {
+    const { serial } = this.props;
+    axios.get(serial)
+      .then(() => {
+        // console.log(starter, 'starter');
+        this.setState({
+          selectedImage: 0,
+        });
+      })
+      .catch((error) => {
+        throw Error(error);
+      });
+  }
 
-  determineStyle(index){
-    let isItemSelected = this.state.selectedImage == index;
+  determineStyle(index) {
+    const { selectedImage } = this.state;
+    // check if there's a default selected image, if not set it to 0
+    if (selectedImage === null) { this.setState({ selectedImage: 0 }); }
+    const isItemSelected = (selectedImage === index);
     return isItemSelected ? '1px solid black' : '1px solid lightgrey';
   }
 
-  render(){
-    var changeKey = this.props.action;
+  render() {
+    const { action } = this.props;
+    const changeKey = action;
+    const { images } = this.props;
     return (
       <div>
         <ul>
-          {this.props.images ? this.props.images.map((image, index) =>(
+          {images ? images.map((image, index) => (
             <li className="product-gallery-image">
-              <img className="disp-thumb" src={image} key={index}
-              onClick={() => {this.setState({selectedImage: index});
-              changeKey(index)}}
-              style={{border: this.determineStyle(index)}}
-              ></img>
+              {/* eslint-disable-next-line */}
+              <img
+                className="disp-thumb"
+                src={image}
+                key={index}
+                onClick={() => {
+                  this.setState({ selectedImage: index });
+                  changeKey(index);
+                }}
+                style={{ border: this.determineStyle(index) }}
+                alt="product image"
+              />
             </li>
-          )) : "Getting Product Data.."}
+          )) : 'Getting Product Data..'}
         </ul>
       </div>
-    )
+    );
   }
 }
+
+ProductGallery.propTypes = {
+  serial: propTypes.string,
+  action: propTypes.func.isRequired,
+  images: propTypes.arrayOf(propTypes.oneOfType([propTypes.string])),
+
+};
 
 export default ProductGallery;
