@@ -19,6 +19,7 @@ class App extends React.Component {
     this.getProductBySerial = this.getProductBySerial.bind(this);
     this.changeKey = this.changeKey.bind(this);
     this.getColors = this.getColors.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   // render product by serial at start of load
@@ -77,7 +78,20 @@ class App extends React.Component {
         this.setState({
           colors,
         });
-      });
+      })
+      .catch((error) => {
+        throw Error(error);
+      });;
+  }
+
+  addToCart(){
+    const {product_serial} = this.state.product
+    axios
+    .post(product_serial)
+    .then((response) => console.log(response))
+    .catch((error) => {
+      throw Error(error);
+    });
   }
 
   // method to handle communication of key from product gallery to main image.
@@ -86,6 +100,8 @@ class App extends React.Component {
       currentKey: key,
     });
   }
+
+
 
   render() {
     const { currentKey } = this.state;
@@ -199,7 +215,7 @@ class App extends React.Component {
           </div>
 
           <div id="payment">
-            <button id="add-to-cart" type="button">
+            <button id="add-to-cart" type="button" onClick={this.addToCart}>
               Add to My Cart
             </button>
             <a href="http://www.nixon.com/wishlist">

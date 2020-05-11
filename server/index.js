@@ -44,6 +44,20 @@ app.get('/api/product/:product_name', (req, res) => {
   });
 });
 
+
+app.post('/api/:product_serial', (req, res)=>{
+  const serial = req.params.product_serial;
+  const queryGet = {
+    product_serial: `${serial}` };
+  const queryAddToCart = {
+    $set: {in_cart: true} };
+  Product.findOneAndUpdate(queryGet, queryAddToCart, (err, result) => {
+    if (err) { console.error(err); }
+     //console.log(result, "result");
+    res.status(200).send(result);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on Port ${PORT}`);
 });
