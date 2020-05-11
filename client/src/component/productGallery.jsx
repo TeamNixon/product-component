@@ -28,7 +28,11 @@ class ProductGallery extends React.Component {
 
   getImages() {
     const { serial } = this.props;
-    axios.get(serial)
+
+    let thisSerial = serial
+    if(!thisSerial){thisSerial = '/api/A105-2687-00'}
+
+    axios.get(thisSerial)
       .then(() => {
         // console.log(starter, 'starter');
         this.setState({

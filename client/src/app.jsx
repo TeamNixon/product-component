@@ -18,27 +18,30 @@ class App extends React.Component {
     };
     this.getProductBySerial = this.getProductBySerial.bind(this);
     this.changeKey = this.changeKey.bind(this);
+    this.getColors = this.getColors.bind(this);
   }
 
   // render product by serial at start of load
   // do  colors request in same initialization for the color gallery
   componentDidMount() {
-    this.getProductBySerial();
+    this.getProductBySerial('/api/A1057-307-00');
   }
 
 
   // axios request function
   // also is initialization
   getProductBySerial(serial) {
+
     let productName;
     let thisSerial = serial;
     // if serial is empty(at beginning) give it a default
-    if (!serial) {
-      thisSerial = '/api/A105-2687-00';
+    if (!thisSerial) {
+      thisSerial = 'A1057-307-00';
     }
 
     axios.get(thisSerial)
       .then((response) => {
+        console.log(response)
         const product = response.data;
         productName = response.data.product_name;
         // console.log(product, "response data");
@@ -63,9 +66,10 @@ class App extends React.Component {
 
   getColors() {
     // eslint-disable-next-line
-    let { product_name } = this.state.product;
-    product_name = product_name.replace(/\s+/g, '-');
-    // console.log('productname replace', productName);
+    const { product_name } = this.state.product;
+    let urlProduct = product_name;
+    urlProduct = urlProduct.replace(/\s+/g, '-');
+    console.log('productname replace', urlProduct);
     axios
       .get(`/api/product/${product_name}`)
       .then((response) => {
