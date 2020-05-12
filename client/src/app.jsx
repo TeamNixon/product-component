@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import StarRatings from 'react-star-ratings';
 
 import ProductGallery from './component/productGallery';
 import Image from './component/image';
@@ -141,9 +142,13 @@ class App extends React.Component {
               {color}
             </div>
             <div id="product-rating">
-              {product_rating}
+              <StarRatings
+              rating={product_rating}
+              numberOfStars={5}
+              starDimension="12px"
+              starRatedColor="black"
+              starSpacing="2px"/>
               {' '}
-              |
               {reviews_amount}
               {' '}
               reviews

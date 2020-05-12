@@ -60,6 +60,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-inner-image-zoom": "^1.0.5",
+    "react-star-ratings": "^2.3.0",
     "react-test-renderer": "^16.13.1"
   }
 }

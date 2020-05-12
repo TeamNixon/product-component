@@ -1,25 +1,13 @@
 @font-face{
-  font-family: 'metropolis-regular';
+  font-family: 'Metropolis-Regular';
   src: url('./Metropolis/Metropolis-Regular.otf');
-  font-family: 'metropolis-light';
+  font-family: 'Metropolis-Light';
   src: url('./Metropolis/Metropolis-Light.otf');
-  font-family: 'metropolis-bold';
+  font-family: 'Metropolis-Bold';
   src: url('./Metropolis/Metropolis-Bold.otf');
 }
 
-body{
-  font-family: 'metropolis-light';
-}
-p{
-  font-family: 'metropolis-light';
-}
 
-h2 {
-  font-family: 'metropolis-bold';
-}
-h3 {
-  font-family: 'metropolis-light';
-}
 #product-nav{
   font-size: 12px;
   padding: 5px;
@@ -170,12 +158,13 @@ button:hover{
   margin-top: 4em;
   margin-left: .4em;
   font-size: 20px;
-  font-family: 'metropolis-bold';
+  font-family: 'Metropolis-Bold';
 }
 #afterpay{
   text-align: left;
   margin-left: .5em;
   font-size: .85em;
+  font-family: 'Metropolis-Regular';
 }
 
 #afterpay-img{
@@ -226,7 +215,7 @@ button:hover{
 }
 
 #callout {
-  margin-top: 80px;
+  margin-top: 30px;
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
@@ -330,3 +319,23 @@ button:hover{
   transform: rotate(45deg);
 }
 /* INNER ZOOM COMPONENT ENDS */
+
+body{
+  font-family: 'Metropolis-Regular';
+}
+p{
+  font-family: 'Metropolis-Regular';
+}
+text{
+  font-family: 'Metropolis-Regular';
+}
+
+h2 {
+  font-family: 'Metropolis-Bold';
+}
+h3 {
+  font-family: 'Metropolis-Light';
+}
+#text{
+  font-family: 'Metropolis-Bold';
+}
