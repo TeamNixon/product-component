@@ -4,20 +4,25 @@ const path = require('path');
 const db = require('../db/index')
 const mongoose = require('mongoose');
 const Product = require('../db/product.model.js');
+const url = require('url');
+const cors = require('cors');
+
+
 
 const app = express();
 const PORT = 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use('/api', express.static(`${__dirname}/../client/dist`));
+app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
 
-app.get('/api/:product_serial', (req, res) => {
+app.get('/serial/:product_serial', (req, res) => {
   const serial = req.params.product_serial;
-  console.log(req.params);
-  console.log(serial);
+  // console.log(req.params);
+  // console.log(serial);
   // A1057-307-00
   const query = {
     product_serial: `${serial}` };
@@ -28,7 +33,7 @@ app.get('/api/:product_serial', (req, res) => {
   });
 });
 
-app.get('/api/product/:product_name', (req, res) => {
+app.get('/product/:product_name', (req, res) => {
   let name = req.params.product_name;
   // console.log(Product);
   // console.log(req.params);
@@ -36,7 +41,7 @@ app.get('/api/product/:product_name', (req, res) => {
   // replace the hyphens from params with a space for query
   name = name.replace(/-/g, ' ');
   const query = { product_name: `${name}` };
-  console.log(query);
+  // console.log(query);
   Product.find(query, (err, result) => {
     if (err) { console.error(err); }
     console.log(name, 'name', result, 'results');
@@ -45,7 +50,7 @@ app.get('/api/product/:product_name', (req, res) => {
 });
 
 
-app.post('/api/:product_serial', (req, res)=>{
+app.post('/serial/:product_serial', (req, res)=>{
   const serial = req.params.product_serial;
   const queryGet = {
     product_serial: `${serial}` };
@@ -57,6 +62,15 @@ app.post('/api/:product_serial', (req, res)=>{
     res.status(200).send(result);
   });
 });
+
+
+app.get(('/bundle/bundle.js'), (req, res) => {
+  console.log(req)
+
+    res.status(200).sendFile(path.resolve(__dirname, '../client') + '/dist/bundle.js');
+
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on Port ${PORT}`);

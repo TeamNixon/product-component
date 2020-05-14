@@ -30,9 +30,9 @@ class ProductGallery extends React.Component {
     const { serial } = this.props;
 
     let thisSerial = serial
-    if(!thisSerial){thisSerial = '/api/A105-2687-00'}
+    if(!thisSerial){thisSerial = 'A1057-307-00'}
 
-    axios.get(thisSerial)
+    axios.get(`http://localhost:5000/serial/${thisSerial}`)
       .then(() => {
         // console.log(starter, 'starter');
         this.setState({

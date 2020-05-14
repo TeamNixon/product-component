@@ -1,11 +1,11 @@
-@font-face{
+/* @font-face{
   font-family: 'Metropolis-Regular';
   src: url('./Metropolis/Metropolis-Regular.otf');
   font-family: 'Metropolis-Light';
   src: url('./Metropolis/Metropolis-Light.otf');
   font-family: 'Metropolis-Bold';
   src: url('./Metropolis/Metropolis-Bold.otf');
-}
+} */
 
 
 #product-nav{
@@ -40,7 +40,7 @@
 }
 
 #face-size{
-  font-family: 'metropolis-bold';
+  font-family: 'Metropolis-Bold';
   margin-top: 30px;
   font-size: 12px;
   margin-left: .5em;

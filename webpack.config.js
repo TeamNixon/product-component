@@ -1,17 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
-
+var SRC_DIR = path.join(__dirname, '/client/src');
+var DIST_DIR = path.join(__dirname, '/client/dist');
 /**
  * Default webpack configuration for development
  */
 const config = {
-  entry: {
-    'client/dist/bundle': path.resolve(__dirname, './client/src/app.jsx'),
-    style: path.resolve(__dirname, 'client/dist/style.css'),
-  },
+  entry:
+    `${SRC_DIR}/app.jsx`,
+    // style: path.resolve(__dirname, 'client/dist/style.css'),,
   output: {
-    path: path.resolve(__dirname, './'),
-    filename: '[name].js',
+    path: DIST_DIR,
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -23,9 +23,18 @@ const config = {
       },
       {
         test: /\.css$/,
+        include: /node_modules/,
         use: [
-          { loader: 'css-loader' },
+          'style-loader', 'css-loader',
         ],
+      },
+      {
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react'],
+          }
+        }
       },
       {
         test: /\.js[x]?/s,

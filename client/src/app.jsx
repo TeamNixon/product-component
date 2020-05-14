@@ -26,7 +26,7 @@ class App extends React.Component {
   // render product by serial at start of load
   // do  colors request in same initialization for the color gallery
   componentDidMount() {
-    this.getProductBySerial('/api/A1057-307-00');
+    this.getProductBySerial('A1057-307-00');
   }
 
 
@@ -41,7 +41,7 @@ class App extends React.Component {
       thisSerial = 'A1057-307-00';
     }
 
-    axios.get(thisSerial)
+    axios.get(`http://localhost:5000/serial/${thisSerial}`)
       .then((response) => {
         console.log(response)
         const product = response.data;
@@ -52,7 +52,7 @@ class App extends React.Component {
         productName = productName.replace(/\s+/g, '-');
         // console.log('productname replace', productName);
         axios
-          .get(`/api/product/${productName}`)
+          .get(`http://localhost:5000/product/${productName}`)
           .then((data) => {
             const colors = data.data;
             this.setState({
@@ -73,7 +73,7 @@ class App extends React.Component {
     urlProduct = urlProduct.replace(/\s+/g, '-');
     console.log('productname replace', urlProduct);
     axios
-      .get(`/api/product/${product_name}`)
+      .get(`http://localhost:5000/product/${product_name}`)
       .then((response) => {
         const colors = response.data;
         this.setState({

@@ -15,9 +15,9 @@ class ColorSelect extends React.Component {
 
   getImages() {
     // let starter;
-    axios.get('A105-2687-00')
+    axios.get('http://localhost:5000/serial/A1057-307-00')
       .then(() => {
-        // starter = response.data.images[0];
+       // starter = response.data.images[0];
         // onsole.log(starter, 'starter');
         this.setState({
           selectedImage: 0,

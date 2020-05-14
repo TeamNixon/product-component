@@ -23,8 +23,9 @@ class Image extends React.Component {
     const newKey = currentKey;
     let newImage;
     const { serial } = this.props;
-    axios.get(serial)
+    axios.get(`http://localhost:5000/serial/${serial}`)
       .then((response) => {
+        console.log(response.data.images)
         newImage = response.data.images[newKey];
         this.setState({
           mainImage: newImage,
@@ -37,7 +38,7 @@ class Image extends React.Component {
 
   // sets the main image to be the 0th index at start
   setMainImage() {
-    axios.get('A105-2687-00')
+    axios.get('http://localhost:5000/serial/A1057-307-00')
       .then((response) => {
         const starter = response.data.images[0];
         this.setState({
