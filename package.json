@@ -46,6 +46,10 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "babel-preset-jest": "^26.0.0",
     "body-parser": "^1.19.0",
@@ -53,6 +57,7 @@
     "css-loader": "^3.5.3",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
+    "font-awesome": "^4.7.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.9.11",
     "mongoose-seed": "^0.6.0",

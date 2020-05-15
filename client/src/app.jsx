@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 import ProductGallery from './component/productGallery';
 import Image from './component/image';
@@ -225,7 +228,7 @@ class App extends React.Component {
             </button>
             <a href="http://www.nixon.com/wishlist">
               <button id="wl" type="button">
-                <i className="far fa-heart" />
+              <FontAwesomeIcon icon={faHeart} />
               </button>
             </a>
           </div>
